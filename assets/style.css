@@ -4,57 +4,107 @@
     box-sizing: border-box;
 }
 
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text-color: #DBE4EF;
+    --card-front-color: #144480;
+    --card-back-color: #00F4BF;
+    --background-color: #121212;
+    --footer-bg-color: #00F4BF;
+    --footer-text-color: #000000;
+    --font-family: 'Bai Jamjuree', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 30px;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .cartao {
-    width: 200px;
-    height: 300px;
-    perspective: 1000px; /* Necessário para o efeito de 3D */
-    cursor: pointer;
-    margin: 10px;
+    perspective: 1000px;
 }
 
 .cartao__conteudo {
-    width: 100%;
-    height: 100%;
     position: relative;
-    transition: transform 0.6s;
+    width: 100%;
+    height: 250px;
     transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
 
-.cartao__conteudo.virado {
-    transform: rotateY(180deg); /* Rotação do cartão ao ser clicado */
+.cartao:hover .cartao__conteudo {
+    transform: rotateY(180deg);
 }
 
-.cartao__frente,
-.cartao__verso {
+
+.cartao__frente, .cartao__verso {
+    position: absolute;
     width: 100%;
     height: 100%;
-    position: absolute;
-    backface-visibility: hidden; /* Esconde o lado de trás ao girar */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cartao__frente {
-    background-color: #4a90e2;
-    color: #fff;
+    background-color: var(--card-front-color);
+    color: var(--text-color);
 }
 
 .cartao__verso {
-    background-color: #f15a24;
-    color: #fff;
-    transform: rotateY(180deg); /* Esconde o verso inicialmente */
+    background-color: var(--card-back-color);
+    color: #000;
+    transform: rotateY(180deg);
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+}
+.cartao__frente h3 {
+    width: 100%;
+    text-align: left;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #00F4BF;
+
+}
+
+.cartao__frente p, .cartao__verso p {
+    font-size: 1em;
+    line-height: 1.4;
+}
+/* .cartao__conteudo.virado {
+    transform: rotateY(180deg);
+} */
+
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8em;
 }
