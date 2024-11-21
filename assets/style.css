@@ -97,9 +97,10 @@ body {
     font-size: 1em;
     line-height: 1.4;
 }
-/* .cartao__conteudo.virado {
+/*Adicionar*/
+.cartao__conteudo.virado {
     transform: rotateY(180deg);
-} */
+}
 
 footer {
     background-color: var(--footer-bg-color);
